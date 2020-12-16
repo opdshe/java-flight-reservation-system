@@ -4,6 +4,7 @@ import application.domain.flight.Flight;
 import application.domain.flight.FlightRepository;
 import application.domain.flight.Route;
 import application.domain.flight.Time;
+import application.domain.flight.exception.NotExistFlightException;
 import application.domain.place.Airport;
 import application.domain.place.City;
 import application.domain.user.domain.ticket.Ticket;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class FlightServiceTest {
     private static final int flightId = 111;
@@ -45,5 +47,15 @@ class FlightServiceTest {
 
         //then
         assertThat(ticketById.getFlightID()).isEqualTo(flightId);
+    }
+
+    @Test
+    void 일치하는_항공편이_없으면_예외_발생해야_한다() {
+        //given
+        int notBeRegisteredId = 999;
+
+        //when & then
+        assertThatExceptionOfType(NotExistFlightException.class)
+                .isThrownBy(() -> FlightService.reserve(notBeRegisteredId));
     }
 }
