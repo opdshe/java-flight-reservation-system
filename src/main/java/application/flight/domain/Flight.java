@@ -15,6 +15,10 @@ public class Flight {
         this.price = price;
     }
 
+    public boolean isCorrespondRoute(String source, String dest) {
+        return route.isCorrespondRoute(source, dest);
+    }
+
     public Ticket makeTicket() {
         String flightID = String.valueOf(this.flightID);
         String source = route.getSourceCity();

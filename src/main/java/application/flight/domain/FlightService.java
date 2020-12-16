@@ -9,4 +9,8 @@ public class FlightService {
     public static List<Flight> findAll() {
         return FlightRepository.findAll();
     }
+
+    public static List<Flight> findByRoute(String source, String dest) {
+        return FlightRepository.findByRoute(source, dest);
+    }
 }
