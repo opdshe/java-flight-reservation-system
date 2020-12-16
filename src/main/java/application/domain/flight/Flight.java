@@ -28,4 +28,8 @@ public class Flight {
     public Time getTime() {
         return time;
     }
+
+    public int getPrice() {
+        return price;
+    }
 }

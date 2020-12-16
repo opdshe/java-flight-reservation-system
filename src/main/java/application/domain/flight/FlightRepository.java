@@ -35,6 +35,4 @@ public class FlightRepository {
     public static void deleteAll() {
         flights.clear();
     }
-
-
 }
