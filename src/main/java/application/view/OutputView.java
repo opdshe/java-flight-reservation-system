@@ -1,7 +1,7 @@
 package application.view;
 
-import application.flight.domain.Flight;
-import application.flight.domain.Ticket;
+import application.domain.flight.Flight;
+import application.domain.flight.Ticket;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

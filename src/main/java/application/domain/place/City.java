@@ -1,4 +1,4 @@
-package application.flight.domain;
+package application.domain.place;
 
 public class City {
     private final String name;

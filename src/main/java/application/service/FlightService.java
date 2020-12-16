@@ -1,4 +1,7 @@
-package application.flight.domain;
+package application.service;
+
+import application.domain.flight.Flight;
+import application.domain.flight.FlightRepository;
 
 import java.util.List;
 

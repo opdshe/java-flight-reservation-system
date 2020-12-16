@@ -1,4 +1,6 @@
-package application.flight.domain;
+package application.domain.flight;
+
+import application.domain.place.Airport;
 
 public class Route {
     private final Airport source;

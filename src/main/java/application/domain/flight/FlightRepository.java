@@ -1,6 +1,8 @@
-package application.flight.domain;
+package application.domain.flight;
 
-import application.flight.exception.NoCorrespondFlightException;
+import application.domain.flight.exception.NoCorrespondFlightException;
+import application.domain.place.Airport;
+import application.domain.place.City;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

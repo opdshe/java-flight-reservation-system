@@ -1,4 +1,4 @@
-package application.flight.domain;
+package application.domain.flight;
 
 import java.time.LocalDateTime;
 

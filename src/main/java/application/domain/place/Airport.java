@@ -1,4 +1,4 @@
-package application.flight.domain;
+package application.domain.place;
 
 public class Airport {
     private final City city;

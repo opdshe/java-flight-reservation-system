@@ -1,7 +1,7 @@
-package application.flight;
+package application.controller;
 
-import application.flight.domain.Flight;
-import application.flight.domain.FlightService;
+import application.domain.flight.Flight;
+import application.service.FlightService;
 import application.view.OutputView;
 
 import java.util.List;
