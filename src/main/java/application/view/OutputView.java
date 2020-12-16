@@ -15,7 +15,7 @@ public class OutputView {
     }
 
     public static void printFlights(List<Flight> flights) {
-        flights.forEach(flight -> printTicket(flight.makeTicket()));
+        flights.forEach(flight -> printTicket(Ticket.of(flight)));
     }
 
     private static void printTicket(Ticket ticket) {

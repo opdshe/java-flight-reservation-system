@@ -9,12 +9,21 @@ public class Ticket {
     private final LocalDateTime departure;
     private final LocalDateTime arrival;
 
-    public Ticket(String flightID, String source, String dest, LocalDateTime departure, LocalDateTime arrival) {
+    private Ticket(String flightID, String source, String dest, LocalDateTime departure, LocalDateTime arrival) {
         this.flightID = flightID;
         this.source = source;
         this.dest = dest;
         this.departure = departure;
         this.arrival = arrival;
+    }
+
+    public static Ticket of(Flight flight) {
+        String flightID = String.valueOf(flight.getFlightID());
+        String source = flight.getRoute().getSourceCity();
+        String dest = flight.getRoute().getDestCity();
+        LocalDateTime departure = flight.getTime().getDeparture();
+        LocalDateTime arrival = flight.getTime().getArrival();
+        return new Ticket(flightID, source, dest, departure, arrival);
     }
 
     public String getFlightID() {

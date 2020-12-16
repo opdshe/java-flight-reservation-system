@@ -1,7 +1,5 @@
 package application.domain.flight;
 
-import java.time.LocalDateTime;
-
 public class Flight {
     private final int flightID;
     private final Route route;
@@ -19,12 +17,15 @@ public class Flight {
         return route.isCorrespondRoute(source, dest);
     }
 
-    public Ticket makeTicket() {
-        String flightID = String.valueOf(this.flightID);
-        String source = route.getSourceCity();
-        String dest = route.getDestCity();
-        LocalDateTime departure = time.getDeparture();
-        LocalDateTime arrival = time.getArrival();
-        return new Ticket(flightID, source, dest, departure, arrival);
+    public int getFlightID() {
+        return flightID;
+    }
+
+    public Route getRoute() {
+        return route;
+    }
+
+    public Time getTime() {
+        return time;
     }
 }
