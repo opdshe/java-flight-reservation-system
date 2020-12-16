@@ -5,11 +5,13 @@ import application.domain.flight.Route;
 import application.domain.flight.Time;
 import application.domain.place.Airport;
 import application.domain.place.City;
+import application.domain.user.domain.ticket.exception.NotExistTicketException;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class TicketRepositoryTest {
     @Test
@@ -28,5 +30,15 @@ class TicketRepositoryTest {
 
         //then
         assertThat(findById).isEqualTo(ticket);
+    }
+
+    @Test
+    void 구매목록에_없는_티켓ID_입력시_예외발생해야함() {
+        //given
+        int notRegisteredId = 111;
+
+        //when & then
+        assertThatExceptionOfType(NotExistTicketException.class)
+                .isThrownBy(() -> TicketRepository.findById(notRegisteredId));
     }
 }
