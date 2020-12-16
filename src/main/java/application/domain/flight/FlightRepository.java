@@ -23,12 +23,18 @@ public class FlightRepository {
         throw new NoCorrespondFlightException();
     }
 
-    public static void save(Flight flight) {
-        flights.add(flight);
-    }
-
     private static boolean hasCorrespondRoute(String source, String dest) {
         return flights.stream()
                 .anyMatch(flight -> flight.isCorrespondRoute(source, dest));
     }
+
+    public static void save(Flight flight) {
+        flights.add(flight);
+    }
+
+    public static void deleteAll() {
+        flights.clear();
+    }
+
+
 }
