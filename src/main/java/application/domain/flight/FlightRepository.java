@@ -1,6 +1,7 @@
 package application.domain.flight;
 
 import application.domain.flight.exception.NoCorrespondFlightException;
+import application.domain.flight.exception.NotExistFlightException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,6 +22,13 @@ public class FlightRepository {
                     .collect(Collectors.toList());
         }
         throw new NoCorrespondFlightException();
+    }
+
+    public static Flight findById(int flightId) {
+        return flights.stream()
+                .filter(flight -> flight.getFlightID() == flightId)
+                .findAny()
+                .orElseThrow(NotExistFlightException::new);
     }
 
     private static boolean hasCorrespondRoute(String source, String dest) {

@@ -19,4 +19,8 @@ public class FlightController {
         List<Flight> flights = FlightService.findByRoute(source, dest);
         OutputView.printFlights(flights);
     }
+
+    public static void reserve(int flightId) {
+        FlightService.reserve(flightId);
+    }
 }

@@ -18,4 +18,8 @@ public class TicketRepository {
                 .findAny()
                 .orElseThrow(NotExistTicketException::new);
     }
+
+    public static void deleteAll() {
+        tickets.clear();
+    }
 }
