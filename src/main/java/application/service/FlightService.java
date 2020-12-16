@@ -2,6 +2,7 @@ package application.service;
 
 import application.domain.flight.Flight;
 import application.domain.flight.FlightRepository;
+import application.domain.flight.FlightValidator;
 import application.domain.user.domain.ticket.Ticket;
 import application.domain.user.domain.ticket.TicketRepository;
 
@@ -21,6 +22,7 @@ public class FlightService {
 
     public static void reserve(int flightId) {
         Flight flight = FlightRepository.findById(flightId);
+        FlightValidator.validateReservation(flight);
         TicketRepository.save(Ticket.of(flight));
     }
 }
