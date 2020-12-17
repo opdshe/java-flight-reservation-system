@@ -10,6 +10,10 @@ public class User {
         balance -= flight.getPrice();
     }
 
+    public static void deposit(int amount) {
+        balance += amount;
+    }
+
     public static boolean hasEnoughMoney(Flight flight) {
         return balance >= flight.getPrice();
     }

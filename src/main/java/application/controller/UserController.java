@@ -16,6 +16,10 @@ public class UserController {
         UserService.cancel(flightId);
     }
 
+    private static void deposit(int amount) {
+        UserService.deposit(amount);
+    }
+
     private static void printBalance() {
         OutputView.printBalance(User.getBalance());
     }

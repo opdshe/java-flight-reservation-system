@@ -19,4 +19,8 @@ public class UserService {
         Ticket ticket = TicketRepository.findById(flightId);
         TicketRepository.delete(ticket);
     }
+
+    public static void deposit(int amount) {
+        User.deposit(amount);
+    }
 }
