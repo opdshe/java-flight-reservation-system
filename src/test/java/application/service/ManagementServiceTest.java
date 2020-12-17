@@ -34,6 +34,8 @@ class ManagementServiceTest {
     @AfterEach
     void clearUp() {
         CityRepository.deleteAll();
+        AirportRepository.deleteAll();
+        FlightRepository.deleteAll();
     }
 
     @Test
@@ -79,7 +81,7 @@ class ManagementServiceTest {
     @Test
     void 도시_삭제시_존재하지_않는_도시는_예외_발생() {
         //given
-        String notRegisteredCity = "파리";
+        String notRegisteredCity = "대구";
 
         //when & then
         assertThatExceptionOfType(NotExistCityException.class)
@@ -89,11 +91,10 @@ class ManagementServiceTest {
     @Test
     void 사용자가_입력한_공항을_추가할_수_있다() {
         //given
-        String cityName = "인천";
-        City city = new City(cityName);
-        String representation = "ICN";
+        String cityName = "부산";
+        String representation = "PUS";
 
-        CityRepository.save(city);
+        CityRepository.save(new City(cityName));
 
         //when
         ManagementService.addAirport(cityName, representation);
@@ -107,12 +108,7 @@ class ManagementServiceTest {
     void 공항등록시_이미_존재하는_공항이면_예외_발생() {
         //given
         String cityName = "인천";
-        City city = new City(cityName);
-        CityRepository.save(city);
-
-        String representation = "ICN";
         String duplicatedRepresentation = "ICN";
-        ManagementService.addAirport(cityName, representation);
 
         //when & then
         assertThatExceptionOfType(AlreadyExistAirportException.class)
@@ -122,16 +118,11 @@ class ManagementServiceTest {
     @Test
     void 축약어_기반으로_공항을_삭제할_수_있다() {
         //given
-        String cityName = "인천";
-        City city = new City(cityName);
-        String representation = "ICN";
-
-        CityRepository.save(city);
-        ManagementService.addAirport(cityName, representation);
+        String registeredAirport = "ICN";
 
         //when
-        ManagementService.deleteAirport(representation);
-        boolean isExist = AirportRepository.isExist(representation);
+        ManagementService.deleteAirport(registeredAirport);
+        boolean isExist = AirportRepository.isExist(registeredAirport);
 
         //then
         assertThat(isExist).isFalse();
