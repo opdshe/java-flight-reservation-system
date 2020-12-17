@@ -1,13 +1,15 @@
 package application.service;
 
-import application.domain.place.*;
+import application.domain.place.Airport;
+import application.domain.place.AirportRepository;
+import application.domain.place.City;
+import application.domain.place.CityRepository;
 
 public class ManagementService {
     private ManagementService() {
     }
 
     public static void addCity(String name) {
-        CityValidator.validateRegistration(name);
         City city = new City(name);
         CityRepository.save(city);
     }
@@ -19,7 +21,6 @@ public class ManagementService {
 
     public static void addAirport(String cityName, String representation) {
         City city = CityRepository.findByName(cityName);
-        AirportValidator.validateRegistration(representation);
         Airport airport = new Airport(city, representation);
         AirportRepository.save(airport);
     }

@@ -5,6 +5,7 @@ public class Airport {
     private final String representation;
 
     public Airport(City city, String representation) {
+        AirportValidator.validateRegistration(representation);
         this.city = city;
         this.representation = representation;
     }
