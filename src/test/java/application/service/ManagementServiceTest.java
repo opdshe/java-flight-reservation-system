@@ -3,6 +3,7 @@ package application.service;
 import application.domain.place.AirportRepository;
 import application.domain.place.City;
 import application.domain.place.CityRepository;
+import application.domain.place.exception.AlreadyExistAirportException;
 import application.domain.place.exception.AlreadyExistCityException;
 import application.domain.place.exception.NotExistCityException;
 import org.junit.jupiter.api.AfterEach;
@@ -70,7 +71,7 @@ class ManagementServiceTest {
     @Test
     void 사용자가_입력한_공항을_추가할_수_있다() {
         //given
-        String cityName = " 인천";
+        String cityName = "인천";
         City city = new City(cityName);
         String representation = "ICN";
 
@@ -82,5 +83,21 @@ class ManagementServiceTest {
 
         //then
         assertThat(isExist).isTrue();
+    }
+
+    @Test
+    void 공항등록시_이미_존재하는_공항이면_예외_발생() {
+        //given
+        String cityName = "인천";
+        City city = new City(cityName);
+        CityRepository.save(city);
+
+        String representation = "ICN";
+        String duplicatedRepresentation = "ICN";
+        ManagementService.addAirport(cityName, representation);
+
+        //when & then
+        assertThatExceptionOfType(AlreadyExistAirportException.class)
+                .isThrownBy(() -> ManagementService.addAirport(cityName, duplicatedRepresentation));
     }
 }

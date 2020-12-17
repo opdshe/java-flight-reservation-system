@@ -19,6 +19,7 @@ public class ManagementService {
 
     public static void addAirport(String cityName, String representation) {
         City city = CityRepository.findByName(cityName);
+        AirportValidator.validateRegistration(representation);
         Airport airport = new Airport(city, representation);
         AirportRepository.save(airport);
     }
