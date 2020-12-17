@@ -21,6 +21,7 @@ public class Flight {
 
     public static Flight of(int flightId, String departureRepresentation, String arrivalRepresentation,
                             String departureTime, String arrivalTime, int price) {
+        FlightValidator.validateRegistration(flightId);
         Airport departure = AirportRepository.findByRepresentation(departureRepresentation);
         Airport arrival = AirportRepository.findByRepresentation(arrivalRepresentation);
         Time time = new Time(TimeConverter.toLocalDateTime(departureTime), TimeConverter.toLocalDateTime(arrivalTime));

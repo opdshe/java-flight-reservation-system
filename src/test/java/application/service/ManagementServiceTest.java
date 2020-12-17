@@ -1,6 +1,7 @@
 package application.service;
 
 import application.domain.flight.FlightRepository;
+import application.domain.flight.exception.AlreadyExistFlightException;
 import application.domain.place.Airport;
 import application.domain.place.AirportRepository;
 import application.domain.place.City;
@@ -163,5 +164,24 @@ class ManagementServiceTest {
 
         //then
         assertThat(isExist).isTrue();
+    }
+
+    @Test
+    void 이미_존재하는_항공편이면_예외_발생해야함() {
+        //given
+        int flightId = 333;
+        String departureRepresentation = "ICN";
+        String arrivalRepresentation = "CGA";
+        String departureTime = "2020-08-22 08:22";
+        String arrivalTime = "2020-08-24 03:20";
+        int price = 100000;
+
+        ManagementService.addFlight(flightId, departureRepresentation, arrivalRepresentation, departureTime,
+                arrivalTime, price);
+
+        //when & then
+        assertThatExceptionOfType(AlreadyExistFlightException.class)
+                .isThrownBy(() -> ManagementService.addFlight(flightId, departureRepresentation, arrivalRepresentation,
+                        departureTime, arrivalTime, price));
     }
 }

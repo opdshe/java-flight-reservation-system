@@ -1,13 +1,16 @@
-package application.domain.user;
+package application.domain.flight;
 
-import application.domain.flight.Flight;
+import application.domain.flight.exception.AlreadyExistFlightException;
+import application.domain.user.Ticket;
+import application.domain.user.TicketRepository;
+import application.domain.user.User;
 import application.domain.user.exception.NotAllowedDurationException;
 import application.domain.user.exception.ShortOfMoneyException;
 
 import java.util.List;
 
-public class ReservationValidator {
-    private ReservationValidator() {
+public class FlightValidator {
+    private FlightValidator() {
     }
 
     public static void validateReservation(Flight flight) {
@@ -30,6 +33,16 @@ public class ReservationValidator {
     private static void validateBalance(Flight flight) {
         if (!User.hasEnoughMoney(flight)) {
             throw new ShortOfMoneyException();
+        }
+    }
+
+    public static void validateRegistration(int flightId) {
+        validateExistence(flightId);
+    }
+
+    private static void validateExistence(int flightId) {
+        if (FlightRepository.isExist(flightId)) {
+            throw new AlreadyExistFlightException();
         }
     }
 }
