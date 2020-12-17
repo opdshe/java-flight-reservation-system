@@ -12,6 +12,10 @@ public class CityRepository {
         cities.add(city);
     }
 
+    public static void delete(City city) {
+        cities.remove(city);
+    }
+
     public static City findByName(String name) {
         return cities.stream()
                 .filter(city -> city.getName().equals(name))
