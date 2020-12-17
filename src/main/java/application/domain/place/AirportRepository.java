@@ -19,8 +19,16 @@ public class AirportRepository {
                 .orElseThrow(NotExistAirportException::new);
     }
 
+    public static void delete(Airport airport) {
+        airports.remove(airport);
+    }
+
     public static boolean isExist(String representation) {
         return airports.stream()
                 .anyMatch(airport -> airport.getRepresentation().equals(representation));
+    }
+
+    public static void deleteAll() {
+        airports.clear();
     }
 }
