@@ -18,6 +18,7 @@ public class UserService {
     public static void cancel(int flightId) {
         Ticket ticket = TicketRepository.findById(flightId);
         TicketRepository.delete(ticket);
+        User.deposit(ticket.getPrice());
     }
 
     public static void deposit(int amount) {

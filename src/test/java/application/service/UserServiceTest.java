@@ -127,4 +127,18 @@ class UserServiceTest {
         assertThatExceptionOfType(NotExistTicketException.class)
                 .isThrownBy(() -> TicketRepository.findById(flightId));
     }
+
+    @Test
+    void 항공편을_취소하면_항공편_금액만큼_잔고에_돈이_입금되어야_함() {
+        //given
+        UserService.buy(flightId);
+        int currentBalance = User.getBalance();
+
+        //when
+        UserService.cancel(flightId);
+        int afterCancelBalance = User.getBalance();
+
+        //then
+        assertThat(afterCancelBalance).isEqualTo(currentBalance + dummyFlightPrice);
+    }
 }

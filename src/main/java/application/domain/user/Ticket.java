@@ -51,4 +51,8 @@ public class Ticket {
     public LocalDateTime getArrival() {
         return arrival;
     }
+
+    public int getPrice() {
+        return price;
+    }
 }
