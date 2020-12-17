@@ -13,4 +13,8 @@ public class ManagementController {
     public static void deleteCity(String name) {
         ManagementService.deleteCity(name);
     }
+
+    public static void addAirport(String cityName, String representation) {
+        ManagementService.addAirport(cityName, representation);
+    }
 }

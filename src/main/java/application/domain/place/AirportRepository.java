@@ -18,4 +18,9 @@ public class AirportRepository {
                 .findAny()
                 .orElseThrow(NotExistAirportException::new);
     }
+
+    public static boolean isExist(String representation) {
+        return airports.stream()
+                .anyMatch(airport -> airport.getRepresentation().equals(representation));
+    }
 }

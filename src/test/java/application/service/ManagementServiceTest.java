@@ -1,5 +1,6 @@
 package application.service;
 
+import application.domain.place.AirportRepository;
 import application.domain.place.City;
 import application.domain.place.CityRepository;
 import application.domain.place.exception.AlreadyExistCityException;
@@ -17,7 +18,7 @@ class ManagementServiceTest {
     }
 
     @Test
-    void 사용자가_입력한_공항을_추가할_수_있다() {
+    void 사용자가_입력한_도시를_추가할_수_있다() {
         //given
         String cityName = "런던";
 
@@ -30,7 +31,7 @@ class ManagementServiceTest {
     }
 
     @Test
-    void 이미_존재하는_공항이면_예외_발생() {
+    void 이미_존재하는_도시이면_예외_발생() {
         //given
         String registeredCity = "런던";
         ManagementService.addCity(registeredCity);
@@ -64,5 +65,22 @@ class ManagementServiceTest {
         //when & then
         assertThatExceptionOfType(NotExistCityException.class)
                 .isThrownBy(() -> ManagementService.deleteCity(notRegisteredCity));
+    }
+
+    @Test
+    void 사용자가_입력한_공항을_추가할_수_있다() {
+        //given
+        String cityName = " 인천";
+        City city = new City(cityName);
+        String representation = "ICN";
+
+        CityRepository.save(city);
+
+        //when
+        ManagementService.addAirport(cityName, representation);
+        boolean isExist = AirportRepository.isExist(representation);
+
+        //then
+        assertThat(isExist).isTrue();
     }
 }
