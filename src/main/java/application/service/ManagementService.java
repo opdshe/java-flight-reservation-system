@@ -23,4 +23,9 @@ public class ManagementService {
         Airport airport = new Airport(city, representation);
         AirportRepository.save(airport);
     }
+
+    public static void deleteAirport(String representation) {
+        Airport airport = AirportRepository.findByRepresentation(representation);
+        AirportRepository.delete(airport);
+    }
 }

@@ -100,4 +100,22 @@ class ManagementServiceTest {
         assertThatExceptionOfType(AlreadyExistAirportException.class)
                 .isThrownBy(() -> ManagementService.addAirport(cityName, duplicatedRepresentation));
     }
+
+    @Test
+    void 축약어_기반으로_공항을_삭제할_수_있다() {
+        //given
+        String cityName = "인천";
+        City city = new City(cityName);
+        String representation = "ICN";
+
+        CityRepository.save(city);
+        ManagementService.addAirport(cityName, representation);
+
+        //when
+        ManagementService.deleteAirport(representation);
+        boolean isExist = AirportRepository.isExist(representation);
+
+        //then
+        assertThat(isExist).isFalse();
+    }
 }
