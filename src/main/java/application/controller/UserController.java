@@ -1,6 +1,8 @@
 package application.controller;
 
+import application.domain.user.User;
 import application.service.UserService;
+import application.view.OutputView;
 
 public class UserController {
     private UserController() {
@@ -12,5 +14,9 @@ public class UserController {
 
     private static void cancel(int flightId) {
         UserService.cancel(flightId);
+    }
+
+    private static void printBalance() {
+        OutputView.printBalance(User.getBalance());
     }
 }

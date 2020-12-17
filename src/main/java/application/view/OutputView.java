@@ -10,6 +10,8 @@ import java.util.List;
 public class OutputView {
     private static final String TIME_PATTERN = "yyyy-MM-dd HH:mm";
     private static final String DIVIDING_LINE = " | ";
+    private static final String CURRENT_BALANCE = "현재 잔고: ";
+    private static final String WON = "원";
 
     private OutputView() {
     }
@@ -26,5 +28,9 @@ public class OutputView {
 
     private static String getFormattedTime(LocalDateTime dateTime) {
         return dateTime.format(DateTimeFormatter.ofPattern(TIME_PATTERN));
+    }
+
+    public static void printBalance(int balance) {
+        System.out.println(CURRENT_BALANCE + balance + WON);
     }
 }
