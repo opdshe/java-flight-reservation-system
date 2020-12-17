@@ -21,4 +21,10 @@ public class ManagementController {
     public static void deleteAirport(String representation) {
         ManagementService.deleteAirport(representation);
     }
+
+    public static void addFlight(int flightId, String departureRepresentation, String arrivalRepresentation,
+                                 String departureTime, String arrivalTime, int price) {
+        ManagementService.addFlight(flightId, departureRepresentation, arrivalRepresentation,
+                departureTime, arrivalTime, price);
+    }
 }

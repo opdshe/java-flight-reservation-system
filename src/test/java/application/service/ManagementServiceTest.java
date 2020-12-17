@@ -1,5 +1,7 @@
 package application.service;
 
+import application.domain.flight.FlightRepository;
+import application.domain.place.Airport;
 import application.domain.place.AirportRepository;
 import application.domain.place.City;
 import application.domain.place.CityRepository;
@@ -8,12 +10,26 @@ import application.domain.place.exception.AlreadyExistCityException;
 import application.domain.place.exception.NotExistAirportException;
 import application.domain.place.exception.NotExistCityException;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class ManagementServiceTest {
+    @BeforeEach
+    void setUp() {
+        City departureCity = new City("인천");
+        City arrivalCity = new City("파리");
+        Airport departureAirport = new Airport(departureCity, "ICN");
+        Airport arrivalAirport = new Airport(arrivalCity, "CGA");
+
+        CityRepository.save(departureCity);
+        CityRepository.save(arrivalCity);
+        AirportRepository.save(departureAirport);
+        AirportRepository.save(arrivalAirport);
+    }
+
     @AfterEach
     void clearUp() {
         CityRepository.deleteAll();
@@ -128,5 +144,24 @@ class ManagementServiceTest {
         //when & then
         assertThatExceptionOfType(NotExistAirportException.class)
                 .isThrownBy(() -> ManagementService.deleteAirport(airportName));
+    }
+
+    @Test
+    void 사용자가_입력한_값을_기반으로_항공편을_추가할_수_있다() {
+        //given
+        int flightId = 333;
+        String departureRepresentation = "ICN";
+        String arrivalRepresentation = "CGA";
+        String departureTime = "2020-08-22 08:22";
+        String arrivalTime = "2020-08-24 03:20";
+        int price = 100000;
+
+        //when
+        ManagementService.addFlight(flightId, departureRepresentation, arrivalRepresentation, departureTime,
+                arrivalTime, price);
+        boolean isExist = FlightRepository.isExist(flightId);
+
+        //then
+        assertThat(isExist).isTrue();
     }
 }

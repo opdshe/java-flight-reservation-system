@@ -31,6 +31,11 @@ public class FlightRepository {
                 .orElseThrow(NotExistFlightException::new);
     }
 
+    public static boolean isExist(int flightId) {
+        return flights.stream()
+                .anyMatch(flight -> flight.getFlightID() == flightId);
+    }
+
     private static boolean hasCorrespondRoute(String source, String dest) {
         return flights.stream()
                 .anyMatch(flight -> flight.isCorrespondRoute(source, dest));

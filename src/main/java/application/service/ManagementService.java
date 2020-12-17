@@ -1,5 +1,7 @@
 package application.service;
 
+import application.domain.flight.Flight;
+import application.domain.flight.FlightRepository;
 import application.domain.place.Airport;
 import application.domain.place.AirportRepository;
 import application.domain.place.City;
@@ -28,5 +30,12 @@ public class ManagementService {
     public static void deleteAirport(String representation) {
         Airport airport = AirportRepository.findByRepresentation(representation);
         AirportRepository.delete(airport);
+    }
+
+    public static void addFlight(int flightId, String departureRepresentation, String arrivalRepresentation,
+                                 String departureTime, String arrivalTime, int price) {
+        Flight flight = Flight.of(flightId, departureRepresentation, arrivalRepresentation,
+                departureTime, arrivalTime, price);
+        FlightRepository.save(flight);
     }
 }
