@@ -3,6 +3,7 @@ package application.service;
 import application.domain.place.City;
 import application.domain.place.CityRepository;
 import application.domain.place.exception.AlreadyExistCityException;
+import application.domain.place.exception.NotExistCityException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
@@ -53,5 +54,15 @@ class ManagementServiceTest {
 
         //then
         assertThat(isExist).isFalse();
+    }
+
+    @Test
+    void 도시_삭제시_존재하지_않는_도시는_예외_발생() {
+        //given
+        String notRegisteredCity = "파리";
+
+        //when & then
+        assertThatExceptionOfType(NotExistCityException.class)
+                .isThrownBy(() -> ManagementService.deleteCity(notRegisteredCity));
     }
 }
