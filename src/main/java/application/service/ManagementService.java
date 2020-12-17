@@ -13,4 +13,9 @@ public class ManagementService {
         City city = new City(name);
         CityRepository.save(city);
     }
+
+    public static void deleteCity(String name) {
+        City city = CityRepository.findByName(name);
+        CityRepository.delete(city);
+    }
 }

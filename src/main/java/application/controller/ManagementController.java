@@ -9,4 +9,8 @@ public class ManagementController {
     public static void addCity(String name) {
         ManagementService.addCity(name);
     }
+
+    public static void deleteCity(String name) {
+        ManagementService.deleteCity(name);
+    }
 }

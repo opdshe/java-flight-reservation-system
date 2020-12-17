@@ -40,4 +40,18 @@ class ManagementServiceTest {
         assertThatExceptionOfType(AlreadyExistCityException.class)
                 .isThrownBy(() -> ManagementService.addCity(duplicatedCity));
     }
+
+    @Test
+    void 사용자가_입력한_도시를_삭제할_수_있다() {
+        //given
+        String cityName = "런던";
+        ManagementService.addCity(cityName);
+
+        //when
+        ManagementService.deleteCity(cityName);
+        boolean isExist = CityRepository.isExist(cityName);
+
+        //then
+        assertThat(isExist).isFalse();
+    }
 }
