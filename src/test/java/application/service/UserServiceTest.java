@@ -11,6 +11,7 @@ import application.domain.user.Ticket;
 import application.domain.user.TicketRepository;
 import application.domain.user.User;
 import application.domain.user.exception.NotAllowedDurationException;
+import application.domain.user.exception.ShortOfMoneyException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -96,5 +97,20 @@ class UserServiceTest {
 
         //then
         assertThat(User.getBalance()).isEqualTo(expectBalance);
+    }
+
+    @Test
+    void 내잔고를_초과하는_항공편은_살_수_없다() {
+        //given
+        int expensiveFlightId = 222;
+        int expensiveFlightPrice = 2000000;
+        Flight expensiveFlight = mock(Flight.class);
+        FlightRepository.save(expensiveFlight);
+        when(expensiveFlight.getFlightID()).thenReturn(expensiveFlightId);
+        when(expensiveFlight.getPrice()).thenReturn(expensiveFlightPrice);
+
+        //when & then
+        assertThatExceptionOfType(ShortOfMoneyException.class)
+                .isThrownBy(() -> UserService.buy(expensiveFlightId));
     }
 }
