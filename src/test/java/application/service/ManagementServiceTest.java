@@ -5,6 +5,7 @@ import application.domain.place.City;
 import application.domain.place.CityRepository;
 import application.domain.place.exception.AlreadyExistAirportException;
 import application.domain.place.exception.AlreadyExistCityException;
+import application.domain.place.exception.NotExistAirportException;
 import application.domain.place.exception.NotExistCityException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -117,5 +118,15 @@ class ManagementServiceTest {
 
         //then
         assertThat(isExist).isFalse();
+    }
+
+    @Test
+    void 존재하지_않는_공항이면_예외_발생() {
+        //given
+        String airportName = "존재하지않는공항";
+
+        //when & then
+        assertThatExceptionOfType(NotExistAirportException.class)
+                .isThrownBy(() -> ManagementService.deleteAirport(airportName));
     }
 }
