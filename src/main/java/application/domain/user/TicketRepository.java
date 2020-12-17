@@ -24,6 +24,10 @@ public class TicketRepository {
                 .orElseThrow(NotExistTicketException::new);
     }
 
+    public static void delete(Ticket ticket) {
+        tickets.remove(ticket);
+    }
+
     public static void deleteAll() {
         tickets.clear();
     }

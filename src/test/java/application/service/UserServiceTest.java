@@ -11,6 +11,7 @@ import application.domain.user.Ticket;
 import application.domain.user.TicketRepository;
 import application.domain.user.User;
 import application.domain.user.exception.NotAllowedDurationException;
+import application.domain.user.exception.NotExistTicketException;
 import application.domain.user.exception.ShortOfMoneyException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -112,5 +113,18 @@ class UserServiceTest {
         //when & then
         assertThatExceptionOfType(ShortOfMoneyException.class)
                 .isThrownBy(() -> UserService.buy(expensiveFlightId));
+    }
+
+    @Test
+    void 내가_구매한_목록에서_취소한_항공편이_사라져야_함() {
+        //given
+        UserService.buy(flightId);
+
+        //when
+        UserService.cancel(flightId);
+
+        //then
+        assertThatExceptionOfType(NotExistTicketException.class)
+                .isThrownBy(() -> TicketRepository.findById(flightId));
     }
 }

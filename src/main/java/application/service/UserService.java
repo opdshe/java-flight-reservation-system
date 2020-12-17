@@ -14,4 +14,9 @@ public class UserService {
         TicketRepository.save(Ticket.of(flight));
         User.buy(flight);
     }
+
+    public static void cancel(int flightId) {
+        Ticket ticket = TicketRepository.findById(flightId);
+        TicketRepository.delete(ticket);
+    }
 }
