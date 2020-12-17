@@ -18,4 +18,13 @@ public class CityRepository {
                 .findAny()
                 .orElseThrow(NotExistCityException::new);
     }
+
+    public static boolean isExist(String name) {
+        return cities.stream()
+                .anyMatch(city -> city.getName().equals(name));
+    }
+
+    public static void deleteAll() {
+        cities.clear();
+    }
 }
