@@ -1,11 +1,11 @@
-package application.domain.user.domain.ticket;
+package application.domain.user;
 
 import application.domain.flight.Flight;
 import application.domain.flight.Route;
 import application.domain.flight.Time;
 import application.domain.place.Airport;
 import application.domain.place.City;
-import application.domain.user.domain.ticket.exception.NotExistTicketException;
+import application.domain.user.exception.NotExistTicketException;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;

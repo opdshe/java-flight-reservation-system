@@ -1,6 +1,6 @@
-package application.domain.user.domain.ticket;
+package application.domain.user;
 
-import application.domain.user.domain.ticket.exception.NotExistTicketException;
+import application.domain.user.exception.NotExistTicketException;
 
 import java.util.ArrayList;
 import java.util.Collections;

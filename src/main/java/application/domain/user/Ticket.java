@@ -1,4 +1,4 @@
-package application.domain.user.domain.ticket;
+package application.domain.user;
 
 import application.domain.flight.Flight;
 
