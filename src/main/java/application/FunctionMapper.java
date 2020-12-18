@@ -32,8 +32,7 @@ public class FunctionMapper {
         MAIN_FUNCTION_MAPPER.put(ONE, ReservationScreen::interact);
         MAIN_FUNCTION_MAPPER.put(TWO, MyPageScreen::interact);
         MAIN_FUNCTION_MAPPER.put(THREE, ManagementScreen::interact);
-        MAIN_FUNCTION_MAPPER.put(QUIT, () -> {
-        });
+        MAIN_FUNCTION_MAPPER.put(QUIT, Status::terminate);
     }
 
     static {

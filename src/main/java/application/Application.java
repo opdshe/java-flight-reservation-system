@@ -5,7 +5,13 @@ import application.view.screen.MainScreen;
 
 public class Application {
     public static void main(String[] args) {
-        executeFunction();
+        executeApplication();
+    }
+
+    private static void executeApplication() {
+        do {
+            executeFunction();
+        } while (Status.isContinue());
     }
 
     private static void executeFunction() {
