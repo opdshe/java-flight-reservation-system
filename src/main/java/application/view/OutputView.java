@@ -7,8 +7,11 @@ import application.util.TimeConverter;
 import java.util.List;
 
 public class OutputView {
-    private static final String DIVIDING_LINE = " | ";
+    private static final String RESULT_PREFIX = "[INFO] ";
+    private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String GUIDE_PREFIX = "## ";
     private static final String CURRENT_BALANCE = "현재 잔고: ";
+    private static final String DIVIDING_LINE = " | ";
     private static final String WON = "원";
 
     private OutputView() {
@@ -26,5 +29,9 @@ public class OutputView {
 
     public static void printBalance(int balance) {
         System.out.println(CURRENT_BALANCE + balance + WON);
+    }
+
+    public static void print(String message) {
+        System.out.println(message);
     }
 }

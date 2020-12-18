@@ -8,19 +8,19 @@ public class UserController {
     private UserController() {
     }
 
-    private static void buy(int flightId) {
+    public static void buy(int flightId) {
         UserService.buy(flightId);
     }
 
-    private static void cancel(int flightId) {
+    public static void cancel(int flightId) {
         UserService.cancel(flightId);
     }
 
-    private static void deposit(int amount) {
+    public static void deposit(int amount) {
         UserService.deposit(amount);
     }
 
-    private static void printBalance() {
+    public static void printBalance() {
         OutputView.printBalance(User.getBalance());
     }
 }
