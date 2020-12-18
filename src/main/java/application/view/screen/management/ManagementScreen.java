@@ -12,6 +12,7 @@ public class ManagementScreen {
             "B. 돌아가기";
 
     public static void interact() {
+        OutputView.printGuide(SCREEN_NAME);
         OutputView.print(FUNCTION_LIST);
         String command = InputView.inputFunction();
         Runnable function = FunctionMapper.matchFunction(FunctionMapper.MANAGEMENT_FUNCTION_MAPPER, command);

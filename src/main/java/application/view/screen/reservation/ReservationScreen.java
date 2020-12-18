@@ -11,9 +11,10 @@ public class ReservationScreen {
     private static final String FUNCTION_LIST = "1. 모든 항공편 조회\n" +
             "2. 여행 경로를 통한 항공편 조회\n" +
             "3. 항공편 구매" +
-            "B. 뒤로 가기\n";
+            "B. 뒤로 가기";
 
     public static void interact() {
+        OutputView.printGuide(SCREEN_NAME);
         OutputView.print(FUNCTION_LIST);
         String command = InputView.inputFunction();
         Runnable function = FunctionMapper.matchFunction(RESERVATION_FUNCTION_MAPPER, command);

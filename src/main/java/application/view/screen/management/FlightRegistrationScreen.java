@@ -11,6 +11,7 @@ public class FlightRegistrationScreen {
     private static final String INPUT_DEPARTURE_TIME = "출발 시간을 입력해 주세요. ";
     private static final String INPUT_ARRIVAL_TIME = "도착 시간을 입력해 주세요. ";
     private static final String INPUT_PRICE = "항공편 가격을 입력해 주세요.";
+    private static final String COMPLETE_REGISTRATION = "항공편이 등록되었습니다. ";
 
     public static void interact() {
         int flightId = inputFlightId();
@@ -22,35 +23,36 @@ public class FlightRegistrationScreen {
 
         ManagementController.addFlight(flightId, departureRepresentation, arrivalRepresentation,
                 departureTime, arrivalTime, price);
+        OutputView.printlnResult(COMPLETE_REGISTRATION);
     }
 
     private static int inputFlightId() {
-        OutputView.print(INPUT_FLIGHT_ID);
+        OutputView.printGuide(INPUT_FLIGHT_ID);
         return Integer.parseInt(InputView.readLine());
     }
 
     private static String inputDepartureRepresentation() {
-        OutputView.print(INPUT_DEPARTURE_AIRPORT_REPRESENTATION);
+        OutputView.printGuide(INPUT_DEPARTURE_AIRPORT_REPRESENTATION);
         return InputView.readLine();
     }
 
     private static String inputArrivalRepresentation() {
-        OutputView.print(INPUT_ARRIVAL_AIRPORT_REPRESENTATION);
+        OutputView.printGuide(INPUT_ARRIVAL_AIRPORT_REPRESENTATION);
         return InputView.readLine();
     }
 
     private static String inputDepartureTime() {
-        OutputView.print(INPUT_DEPARTURE_TIME);
+        OutputView.printGuide(INPUT_DEPARTURE_TIME);
         return InputView.readLine();
     }
 
     private static String inputArrivalTime() {
-        OutputView.print(INPUT_ARRIVAL_TIME);
+        OutputView.printGuide(INPUT_ARRIVAL_TIME);
         return InputView.readLine();
     }
 
     private static int inputPrice() {
-        OutputView.print(INPUT_PRICE);
+        OutputView.printGuide(INPUT_PRICE);
         return Integer.parseInt(InputView.readLine());
     }
 }

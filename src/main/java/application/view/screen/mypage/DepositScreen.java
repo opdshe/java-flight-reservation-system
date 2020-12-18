@@ -5,16 +5,17 @@ import application.view.InputView;
 import application.view.OutputView;
 
 public class DepositScreen {
-    private static final String SCREEN_NAME = "입금 기능 화면";
     private static final String INPUT_AMOUNT = "입금할 금액을 입력하세요. ";
+    private static final String COMPLETE_DEPOSIT = "입금이 완료되었습니다. ";
 
     public static void interact() {
         int amount = inputAmount();
         UserController.deposit(amount);
+        OutputView.printlnResult(COMPLETE_DEPOSIT);
     }
 
     private static int inputAmount() {
-        OutputView.print(INPUT_AMOUNT);
+        OutputView.printGuide(INPUT_AMOUNT);
         return Integer.parseInt(InputView.readLine());
     }
 }

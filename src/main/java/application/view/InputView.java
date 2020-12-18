@@ -10,7 +10,7 @@ public class InputView {
     }
 
     public static String inputFunction() {
-        OutputView.print(SELECT_FUNCTION);
+        OutputView.printGuide(SELECT_FUNCTION);
         return readLine();
     }
 

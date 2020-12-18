@@ -11,9 +11,10 @@ public class MyPageScreen {
     private static final String FUNCTION_LIST = "1. 항공편 취소\n" +
             "2. 잔금 조회\n" +
             "3. 입금 기능\n" +
-            "B. 뒤로 가기\n";
+            "B. 뒤로 가기";
 
     public static void interact() {
+        OutputView.printGuide(SCREEN_NAME);
         OutputView.print(FUNCTION_LIST);
         String command = InputView.inputFunction();
         Runnable function = FunctionMapper.matchFunction(MY_PAGE_FUNCTION_MAPPER, command);
