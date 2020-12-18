@@ -12,6 +12,10 @@ public class AirportRepository {
         airports.add(airport);
     }
 
+    public static void saveAll(List<Airport> airports) {
+        airports.forEach(AirportRepository::save);
+    }
+
     public static Airport findByRepresentation(String representation) {
         return airports.stream()
                 .filter(airport -> airport.getRepresentation().equals(representation))

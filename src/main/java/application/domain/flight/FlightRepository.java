@@ -45,6 +45,10 @@ public class FlightRepository {
         flights.add(flight);
     }
 
+    public static void saveAll(List<Flight> flights) {
+        flights.forEach(FlightRepository::save);
+    }
+
     public static void deleteAll() {
         flights.clear();
     }

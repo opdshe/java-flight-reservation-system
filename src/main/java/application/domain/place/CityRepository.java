@@ -12,6 +12,10 @@ public class CityRepository {
         cities.add(city);
     }
 
+    public static void saveAll(List<City> cities) {
+        cities.forEach(CityRepository::save);
+    }
+
     public static void delete(City city) {
         cities.remove(city);
     }

@@ -9,6 +9,7 @@ public class Application {
     }
 
     private static void executeApplication() {
+        DataInitializer.initialize();
         do {
             executeFunction();
         } while (Status.isContinue());
